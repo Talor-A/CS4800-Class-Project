@@ -1,6 +1,6 @@
 .slidecontainer {
   width: 100%; /* Width of the outside container */
-  padding: 10px;
+  padding: 3px;
 }
 
 /* The slider itself */
@@ -8,7 +8,7 @@
   -webkit-appearance: none;  /* Override default CSS styles */
   appearance: none;
   width: 50%; /* Half-width */
-  height: 25px; /* Specified height */
+  height: 10px; /* Specified height */
   background: #dddddd; /* Grey background */
   outline: none; /* Remove outline */
   opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
@@ -73,3 +73,71 @@ div.desc{
   padding: 15px;
   text-align: center;
 }
+.container {
+  width: 1000px;
+  overflow: hidden;
+  margin: 50px auto;
+  background: white;
+}
+.photobanner {
+  height: 233px;
+  width: 3550px;
+  margin-bottom: 80px;
+ }
+ 
+ .first {
+  -webkit-animation: bannermove 30s linear infinite;
+     -moz-animation: bannermove 30s linear infinite;
+      -ms-animation: bannermove 30s linear infinite;
+       -o-animation: bannermove 30s linear infinite;
+          animation: bannermove 30s linear infinite;
+ }
+
+ @keyframes bannermove {
+  0% {
+     margin-left: 0px;
+  }
+  100% {
+     margin-left: -2125px;
+  }
+  
+ }
+ @-moz-keyframes bannermove {
+  0% {
+    margin-left: 0px;
+  }
+  100% {
+    margin-left: -2125px;
+  }
+  
+ }
+  
+ @-webkit-keyframes bannermove {
+  0% {
+    margin-left: 0px;
+  }
+  100% {
+    margin-left: -2125px;
+  }
+  
+ }
+  
+ @-ms-keyframes bannermove {
+  0% {
+    margin-left: 0px;
+  }
+  100% {
+    margin-left: -2125px;
+  }
+  
+ }
+  
+ @-o-keyframes bannermove {
+  0% {
+    margin-left: 0px;
+  }
+  100% {
+    margin-left: -2125px;
+  }
+  
+ }
