@@ -1,5 +1,6 @@
 .slidecontainer {
   width: 100%; /* Width of the outside container */
+  padding: 3px;
 }
 
 /* The slider itself */
@@ -7,12 +8,13 @@
   -webkit-appearance: none;  /* Override default CSS styles */
   appearance: none;
   width: 50%; /* Half-width */
-  height: 25px; /* Specified height */
+  height: 10px; /* Specified height */
   background: #dddddd; /* Grey background */
   outline: none; /* Remove outline */
   opacity: 0.7; /* Set transparency (for mouse-over effects on hover) */
   -webkit-transition: .2s; /* 0.2 seconds transition on hover */
   transition: opacity .2s;
+
 }
 
 /* Mouse-over effects */
@@ -42,3 +44,100 @@
     margin-right:auto;
     width:5%
 }
+.column {
+  float: left;
+  width: 17%;
+  padding: 5px;
+}
+
+/* Clear floats after image containers */
+.row::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+div.gallery{ 
+  margin: 5px;
+  border: 1px solid #cccccc;
+  float: left;
+  widows: 180px;
+}
+div.gallery:hover {
+   border: 1px solid #777777;
+}
+div.gallery img{
+  widows: 100%;
+  height: auto;
+}
+div.desc{
+  padding: 15px;
+  text-align: center;
+}
+.container {
+  width: 1000px;
+  overflow: hidden;
+  margin: 50px auto;
+  background: white;
+}
+.photobanner {
+  height: 233px;
+  width: 3550px;
+  margin-bottom: 80px;
+ }
+ 
+ .first {
+  -webkit-animation: bannermove 30s linear infinite;
+     -moz-animation: bannermove 30s linear infinite;
+      -ms-animation: bannermove 30s linear infinite;
+       -o-animation: bannermove 30s linear infinite;
+          animation: bannermove 30s linear infinite;
+ }
+
+ @keyframes bannermove {
+  0% {
+     margin-left: 0px;
+  }
+  100% {
+     margin-left: -100vw;
+  }
+  
+ }
+ @-moz-keyframes bannermove {
+  0% {
+    margin-left: 0px;
+  }
+  100% {
+    margin-left: -100vw;
+  }
+  
+ }
+  
+ @-webkit-keyframes bannermove {
+  0% {
+    margin-left: 0px;
+  }
+  100% {
+    margin-left: -100vw;
+  }
+  
+ }
+  
+ @-ms-keyframes bannermove {
+  0% {
+    margin-left: 0px;
+  }
+  100% {
+    margin-left: -100vw;
+  }
+  
+ }
+  
+ @-o-keyframes bannermove {
+  0% {
+    margin-left: 0px;
+  }
+  100% {
+    margin-left: -100vw;
+  }
+  
+ }
