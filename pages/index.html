@@ -3,13 +3,7 @@
     <head>
         <title>4800 Dress Project</title>
         <link rel="stylesheet" href="stylesheets/bootstrap.min.css" type = "text/css">
-
         <link href ="stylesheets/style.css" rel="stylesheet" type = "text/css">
-        
-	<script>
-  var myVar = <%- JSON.stringify(myVar) %>;
-</script>
-
     </head>
     <body>
         <img src="images\dress.jpg" alt = "Dress" height="100" width ="60" class="center">
@@ -30,42 +24,16 @@
             <input type = "range" min="1" max ="100" value ="50" class="slider" id="myRange">
         </div>
         <div id="container">
-            <div class="photobanner">
-                <img class="first" src="images\WeddingImage1.jpeg" alt="" width ="300" height="400"/>
+            <div id="photobanner">
+                <!--<img src="images\WeddingImage1.jpeg" alt="" width ="300" height="400"/>
                 <img src="images\WeddingImage2.jpeg" alt="" width ="300" height="400"/>
                 <img src="images\WeddingImage3.jpeg" alt="" width ="300" height="400"/>
                 <img src="images\WeddingImage4.jpeg" alt="" width ="300" height="400"/>
                 <img src="images\WeddingImage2.jpeg" alt="" width ="300" height="400"/>
                 <img src="images\WeddingImage3.jpeg" alt="" width ="300" height="400"/>
-                <img src="images\WeddingImage4.jpeg" alt="" width ="300" height="400"/>
-            </div>
+                <img src="images\WeddingImage4.jpeg" alt="" width ="300" height="400"/>-->
+	    </div>
         </div>
-        <div class="gallery">
-            <a target="_blank" href="WeddingImage1.jpeg">
-              <img src="images\WeddingImage1.jpeg" alt="Wedding Dress 1" width="200" height="100">
-            </a>
-            <div class="desc">Strapless Ball Gown</div>
-          </div>
-          
-    <div class="gallery">
-            <a target="_blank" href="WeddingImage2.jpeg">
-              <img src="images\WeddingImage2.jpeg" alt="Wedding Dress 2" width="200" height="100">
-            </a>
-      <div class="desc">Strapless Mermaid</div>
-    </div>
-          
-    <div class="gallery">
-            <a target="_blank" href="WeddingImage3.jpeg">
-              <img src="images\WeddingImage3.jpeg" alt="Wedding Dress 3" width="200" height="100">
-            </a>
-            <div class="desc">Off the Shoulder Dress</div>
-          </div>
-          
-          <div class="gallery">
-            <a target="_blank" href="WeddingImage4.jpeg">
-              <img src="images\WeddingImage4.jpeg" alt="Wedding Dress 3" width="200" height="100">
-            </a>
-            <div class="desc">Mermaid Dress w/ Train</div>
-          </div>
+      <script src="javascript/javascript.js"></script>  
     </body>
 </html>
