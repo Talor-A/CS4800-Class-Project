@@ -3,6 +3,7 @@ var path = require('path');
 
 // Example of an API handler
 var usersRouter = require('./routes/users');
+var apiRouter = require('./routes/API')
 
 var app = express();
 
@@ -10,7 +11,7 @@ var app = express();
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/users', usersRouter);
-
+app.use('/api', apiRouter);
 // app.use('/', indexRouter);
 
 // serve the index.html page
