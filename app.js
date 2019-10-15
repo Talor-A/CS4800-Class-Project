@@ -1,6 +1,7 @@
 var express = require('express');
 var path = require('path');
 
+
 // Example of an API handler
 var usersRouter = require('./routes/users');
 var apiRouter = require('./routes/API')
@@ -14,9 +15,12 @@ app.use('/users', usersRouter);
 app.use('/api', apiRouter);
 // app.use('/', indexRouter);
 
-// serve the index.html page
+//serve the index.html page
 app.get('/', function(req, res) {
   res.sendFile('pages/index.html' , { root : __dirname});
 });
 
+
+
 module.exports = app;
+
