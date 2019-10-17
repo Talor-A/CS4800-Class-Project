@@ -1,10 +1,17 @@
 function getJSON(data){
+  str_full = "";
   for ( i = 0; i < data.length; i++){
-    if(i==0)
-      c = "class=\"first\"";
+
+    if(i<3)
+      active = " active";
     else
-      c = ""
-    document.getElementById('photobanner').innerHTML += "<img " + c + " src=" + data[i].base64 + " width =\"300\" height=\"400\"/>";
+      active = ""
+
+    str_full += "<div class=\"col-xs-4\"><a href=\"#1\"><img src=\"" + data[i].base64 + "\" class=\"img-responsive\"></a></div>"
+    if( i % 3 == 2){
+	document.getElementById('carousel-inner').innerHTML += "<div class=\"item" + active + "\">" + str_full + "</div>";
+        str_full = "";
+    }
   }
 }
 
@@ -28,6 +35,8 @@ $('.multi-item-carousel .item').each(function(){
   	$(this).siblings(':first').children(':first-child').clone().appendTo($(this));
   }
 });
+
+
 fetch('/api/dresses')
   .then(res => res.json())
   .then(text => getJSON(text))
