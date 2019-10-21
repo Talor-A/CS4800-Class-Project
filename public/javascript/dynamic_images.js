@@ -38,22 +38,14 @@ function initateCarousel() {
   });
 }
 
-function svgloaded(el, draw) {
-  console.log(el.getAttribute(id) + " loaded");
-  var svg = el.getSVGDocument();
-
-  // var gn = svg.get("greenBlock");
-  // gn.setAttribute("fill", "#ff0000");
-
-  console.log(svg.get(".cls-1"))
-}
-
 var body = {
   LEG_L: {},
   LEG_R: {},
 }
 
 SVG.on(document, 'DOMContentLoaded', function () {
+  initateCarousel()
+
   fetch('/api/dresses')
     .then(res => res.json())
     .then(text => getJSON(text))
@@ -85,10 +77,7 @@ SVG.on(document, 'DOMContentLoaded', function () {
       thisSvg.attr("id", id)
       return thisSvg
     })
-    // .then(svg => svg.hide())
-    // .then(svg => svg.select('path.cls-1').first())
     .then(node => {
-      console.log(node === draw)
       node.hide()
       body.LEG_R[id] = node
       console.log(node)
