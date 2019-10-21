@@ -86,7 +86,7 @@ SVG.on(document, 'DOMContentLoaded', function () {
 
   Promise.all(requests).then(()=>{
     console.log("leg loaded.")
-    // console.log(body.LEG_R.LEG_R_A.select('path.cls-1').first())
+    
     var pathRA = body.LEG_R.LEG_R_A.select('path.cls-1').first().array().toString()
     var pathRB = body.LEG_R.LEG_R_C.select('path.cls-1').first().array().toString()
     console.log(pathRA)
