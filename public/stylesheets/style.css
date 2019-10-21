@@ -43,12 +43,8 @@
     display:block;
     margin-left: auto;
     margin-right:auto;
-    width:5%
-}
-.column {
-  float: left;
-  width: 17%;
-  padding: 5px;
+    text-align: center;
+    /* width:5% */
 }
 
 p {
@@ -56,6 +52,10 @@ p {
   padding:10px;
 }
 
+#render {
+  background-color: azure;
+  min-height: 400px;
+}
   
 
 
