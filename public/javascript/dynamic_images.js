@@ -38,6 +38,14 @@ function initateCarousel() {
   });
 }
 
+
+function leg_width_update(){
+  var x = document.getElementById("leg_width").value;
+  document.getElementById("right").setAttribute("d", "M" + (15.47*x) + ",69.59l1.34-38.24a7.28,7.28,0,0,0,.08-3.74L" + (17.5*x)+ ",0H0L" + (8.05*x) + ",30.27a39.87,39.87,0,0,0-.52,24.08,114.48,114.48,0,0,1,3.59,15.24Z");
+}
+
+
+/*
 var body = {
   LEG_L: {},
   LEG_R: {},
@@ -157,14 +165,8 @@ SVG.on(document, 'DOMContentLoaded', function () {
 
   })
 
-
-
-
-
-
-
 })
 
-
+*/
 
 
