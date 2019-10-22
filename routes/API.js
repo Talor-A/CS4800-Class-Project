@@ -37,18 +37,10 @@ router.get('/', (req, res) => {
 });
 
 
-router.get('/admin', function (req, res) {
-  var html='';
-  html +="<body>";
-  html += "<form action='/api/thank'  method='post' name='form1'>";
-  html += "<p>Dress Description:<input type= 'text' name='description'></p>";
-  html += "<p>Vector (Doesnt work yet):<input type='text' name='vector'></p>";
-  html += "<p>Base_64:<input type='text' name='base'></p>";
-  html += "<input type='submit' value='submit'>";
-  html += "</form>";
-  html += "</body>";
-  res.send(html);
-});
+//serve the index.html page
+router.get('/Admin', function(req, res) {
+  res.sendFile('pages/Admin.html' , { root : __dirname});
+});//serve the index.html page
  
 router.post('/thank', urlencodedParser, function (req, res){
   var command = "INSERT INTO `dresses`(`base64`, `description`) VALUES (\"" + req.body.base + "\" ,\"" + req.body.description + "\" )"
