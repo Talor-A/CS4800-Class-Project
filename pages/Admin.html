@@ -5,26 +5,49 @@
 <head>
     <meta charset="utf-8">
     <title>Admin Page</title>
-    <!--latest compiled and minified CSS-->
-    <link rel="stylesheet" type="css" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="style.css" Type="text/css" media="all">
 
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 
 <body>
     <div class="container">
         <div class="row">
-            <div class="col-xs-12">
+            <div class="col-md-6">
                 <h2>Admin Form</h2>
-                <form action='/api/thank' method='post' name='form1'>
-                    <p>Description:</p>
-                    <input type='text' name='description'></p>
-                    <p>Vector:<input type='text' name='vector'></p>
-                    <p>Base_64:<input type='text' name='base'></p>
-                    <input type='submit' value='submit'>
+                <!--<img src="public/logo and background/logo.png" alt = "Dress" height="100" width ="60" class="float-right">-->
+                <p></p>
+                <form action='/api/thank' method='post' name='form1'class='center'>
+                    <div class="form-group">
+                        <label for="description">Dress Description</label>
+                        
+                        <textarea class="form-control" id="description" placeholder="Include dress style, designer, ect." rows="3"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="vector">Vector</label>
+                        
+                        <input type='text' name='vector' placeholder="Input" class='form-control'> 
+                    </div>
+                    <div class="form-group">
+                        <label for="base">Base_64</label>
+
+                        <input type='text' name='base' placeholder="Input" class='form-control'>
+                    </div>
+                    <div class="form-group">
+                        <label for="dressPhoto">Photo input</label>
+
+                        <input type="file" class="form-control-file" id="dressPhoto">
+                      </div>
+                    <button type="submit" class="btn btn-outline-success">Submit</button>
                 </form>
             </div>
         </div>
     </div>
+    <!-- jQuery, Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 </body>
 
 </html>

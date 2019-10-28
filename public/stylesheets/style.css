@@ -55,7 +55,10 @@ p {
   font-family: "Lucida Calligraphy";
   padding:10px;
 }
-
+.custom-centered{
+  margin:0 auto;
+  width:300px;
+ }
   
 
 

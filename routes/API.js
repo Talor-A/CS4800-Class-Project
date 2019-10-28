@@ -37,10 +37,10 @@ router.get('/', (req, res) => {
 });
 
 
-//serve the index.html page
+//serve the Admin.html page
 router.get('/Admin', function(req, res) {
   res.sendFile('pages/Admin.html' , { root : __dirname});
-});//serve the index.html page
+});//serve the Admin.html page
  
 router.post('/thank', urlencodedParser, function (req, res){
   var command = "INSERT INTO `dresses`(`base64`, `description`) VALUES (\"" + req.body.base + "\" ,\"" + req.body.description + "\" )"
