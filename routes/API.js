@@ -39,7 +39,7 @@ router.get('/', (req, res) => {
 
 //serve the Admin.html page
 router.get('/Admin', function(req, res) {
-  res.sendFile('pages/Admin.html' , { root : __dirname});
+  res.sendFile('pages/Admin.html' , { root : '.'});
 });//serve the Admin.html page
  
 router.post('/thank', urlencodedParser, function (req, res){

@@ -16,7 +16,7 @@ app.use('/api', apiRouter);
 
 //serve the index.html page
 app.get('/', function(req, res) {
-  res.sendFile('pages/index.html' , { root : __dirname});
+  res.sendFile('pages/index.html', { root : '.'});
 });//serve the index.html page
 
 
