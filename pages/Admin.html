@@ -51,14 +51,16 @@
                         <img id="dress" src="#" alt="Chosen Image" height="500" width ="500" />
                         <!--This funtion allows for file to be previewed before upload-->
                         <script>
+                            $('#dress').hide();
                             function readURL(input) {
                                 if (input.files && input.files[0]) {
                                     var reader = new FileReader();
 
                                     reader.onload = function (e) {
+                                        $('#dress').show();
                                         $('#dress').attr('src', e.target.result);
                                     }
-
+                                    
                                     reader.readAsDataURL(input.files[0]);
                                 }
                             }
