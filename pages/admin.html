@@ -10,7 +10,6 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
         integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link href="css/bootstrap-imgupload.css" rel="stylesheet">
 
 </head>
 
@@ -19,56 +18,24 @@
         <div class="row">
             <div class="col-md-6">
                 <h2>Admin Form</h2>
-                <!--<img src="public/logo and background/logo.png" alt = "Dress" height="100" width ="60" class="float-right">-->
-                <p></p>
-                <form action='/api/thank' method='post' name='form1' class='center' style="width: 500px; margin:auto">
+                <!--<img src="images/logo.png" alt = "Dress" height="100" width ="60" class="float-right">-->
+                <br>
+                <form action='admin/upload' method='post' name='form1' class='center' style="width: 500px; margin:auto">
                     <!--Dress Description Text Area-->
                     <div class="form-group">
-                        <label for="description">Dress Description</label>
-
-                        <textarea class="form-control " id="description"
+                        <label for="desc">Dress Description</label>
+                        <textarea class="form-control " name="desc"
                             placeholder="Include dress style, designer, ect." rows="3" required="true"></textarea>
-
                     </div>
                     <!--Vector-->
                     <div class="form-group">
                         <label for="vector">Vector</label>
-
                         <input type='text' name='vector' placeholder="Input" class='form-control' required="true">
                     </div>
                     <!--Base-->
                     <div class="form-group">
                         <label for="base">Base_64</label>
-
                         <input type='text' name='base' placeholder="Input" class='form-control'>
-                    </div>
-                    <!--Upload Photo-->
-                    <div class="form-group img-upload">
-                        <label for="dressPhoto">Photo input</label>
-                        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-                        <!--Only accept .svg files-->
-                        <input type="file" accept=".svg" class="form-control-file" id="dressPhoto" required="true">
-                        <img id="dress" src="#" alt="Chosen Image" height="500" width ="500" />
-                        <!--This funtion allows for file to be previewed before upload-->
-                        <script>
-                            $('#dress').hide();
-                            function readURL(input) {
-                                if (input.files && input.files[0]) {
-                                    var reader = new FileReader();
-
-                                    reader.onload = function (e) {
-                                        $('#dress').show();
-                                        $('#dress').attr('src', e.target.result);
-                                    }
-                                    
-                                    reader.readAsDataURL(input.files[0]);
-                                }
-                            }
-
-                            $("#dressPhoto").change(function () {
-                                readURL(this);
-                            });
-                        </script>
                     </div>
                     <!--Submit button-->
                     <button type="submit" class="btn btn-outline-success">Submit</button>

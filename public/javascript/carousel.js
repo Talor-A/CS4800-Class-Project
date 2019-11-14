@@ -1,19 +1,24 @@
+carousel_images_per_slide = 3
+
 function getJSON(data) {
   str_full = "";
   for (i = 0; i < data.length; i++) {
 
-    if (i < 3)
+    //set the first slide of images to active
+    if (i < carousel_images_per_slide)
       active = " active";
     else
       active = ""
 
     str_full += "<div class=\"col-xs-4\"><a href=\"#1\"><img src=\"" + data[i].base64 + "\" class=\"img-responsive\"></a></div>"
-    if (i % 3 == 2) {
+
+    if (i % carousel_images_per_slide == (carousel_images_per_slide - 1)) {
       document.getElementById('carousel-inner').innerHTML += "<div class=\"item" + active + "\">" + str_full + "</div>";
       str_full = "";
     }
   }
 }
+
 
 function initateCarousel() {
   // Instantiate the Bootstrap carousel
