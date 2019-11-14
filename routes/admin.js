@@ -27,11 +27,12 @@ router.get('/', function(req, res) {
 });
  
 router.post('/upload', urlencodedParser, function (req, res){
-  var x = req.body
+  var x = req.body;
   var command = "INSERT INTO `dresses`(`base64`, `vector`, `description`) VALUES (\"" + x.base + "\", \"" + x.vector + "\", \"" + x.desc + "\")"
   con.query(command, function (err, result, fields) {
       if (err) throw err;
   });
+
 
   res.send("Dress added.");
  });
