@@ -17,97 +17,93 @@ SVG.on(document, 'DOMContentLoaded', function () {
   // #render is the document element where the graphics will be shown
   var draw = SVG('render')
 
-  var LEG_R = {
-    "LEG_R_A": "images/SVG/LEGS/LEG R A.svg",
-    "LEG_R_B": "images/SVG/LEGS/LEG R B.svg",
-    "LEG_R_C": "images/SVG/LEGS/LEG R C.svg",
-    "LEG_R_D": "images/SVG/LEGS/LEG R D.svg",
+  var svgToPaths = svg => {
+
+    // get all the paths contained in an svg into an array
+    const paths = []
+
+    svg.each((i, children) => {
+      const currChild = children[i]
+
+      // console.log(currChild)
+
+      if(currChild.array) paths.push(currChild)
+    }, true)
+    console.log(paths)
+    return paths
   }
-  var legs_2 = {
-    "legs_2A": "images/SVG/LEGS/Asset 1.svg",
-    "legs_2B": "images/SVG/LEGS/Asset 2.svg"
+
+  var textToSvg = text => {
+    // draw.svg() returns a reference to the draw object.
+    // it doesn't return a reference to the shape we just made
+    draw.svg(text)
+
+    // so find the last shape added to the view and return it
+    var children = draw.children()
+    var thisSvg = children[children.length - 1]
+
+    return thisSvg
   }
 
-  var torso = {
-    "torso_A": "images/SVG/LEGS/Asset 3.svg",
-    "torso_B": "images/SVG/LEGS/Asset 4.svg"
+  // var requests = [...legreq, ...torsoreq]
+
+  var body1req = fetch('images/SVG/Body1.svg')
+    .then(res => res.text())
+    .then(textToSvg)
+  var body2req = fetch('images/SVG/Body2.svg')
+  .then(res => res.text())
+  .then(textToSvg)
+
+
+  var requests = [body1req,body2req]
+
+  var animateAll = (fromSvg, toSvg, time) => {
+    const fromPaths = svgToPaths(fromSvg)
+    const toPaths = svgToPaths(toSvg)
+    const anims = []
+    if(fromPaths.length !== toPaths.length) {
+      console.error('paths not similar shape.')
+    } else {
+      for(var i = 0; i < fromPaths.length; i++) {
+        var from = fromPaths[i]
+        var to = toPaths[i]
+        const anim = from.animate()
+        anim.plot(to.array())
+      }
+    }
+    return anims
   }
-
-  var legreq = Object.entries(legs_2).map(([id, url]) =>
-    fetch(url)
-      .then(res => res.text())
-      .then(text => {
-        // draw.svg() returns a reference to the draw object.
-        // it doesn't return a reference to the shape we just made
-        draw.svg(text)
-
-        // so find the last shape added to the view and return it
-        var children = draw.children()
-
-        var thisSvg = children[children.length - 1]
-        thisSvg.attr("id", id)
-        return thisSvg
-      })
-      .then(node => {
-        node.hide()
-        body.legs[id] = node
-        console.log(node)
-      })
-  )
-
-  var torsoreq = Object.entries(torso).map(([id, url]) =>
-    fetch(url)
-      .then(res => res.text())
-      .then(text => {
-        // draw.svg() returns a reference to the draw object.
-        // it doesn't return a reference to the shape we just made
-        draw.svg(text)
-
-        // so find the last shape added to the view and return it
-        var children = draw.children()
-
-        var thisSvg = children[children.length - 1]
-        thisSvg.attr("id", id)
-        return thisSvg
-      })
-      .then(node => {
-        node.hide()
-        body.torso[id] = node
-        console.log(node)
-      })
-  )
-
-  var requests = [...legreq, ...torsoreq]
+  
+  Promise.all(requests)
+  .then(([body1node,body2node]) => {
 
 
-  Promise.all(requests).then(() => {
     console.log("all svgs loaded.")
-    var tA = body.torso.torso_A
-    var tB = body.torso.torso_B
+    body2node.hide()
+    // body1node.animate(2000, '>', 0).plot(body2node)
+    console.dir(body1node)
+    animateAll(body1node,body2node)
+    // var tA = body.torso.torso_A
+    // var tB = body.torso.torso_B
 
-    var pathTorsoA = tA.select('#Torso').first()
-    var pathTorsoB = tB.select('#Torso').first()
+    // var pathTorsoA = tA.select('#Torso').first()
+    // var pathTorsoB = tB.select('#Torso').first()
 
-    console.log(pathTorsoA.array().value)
+    // console.log(pathTorsoA.array().value)
 
-    // var tA = draw.path(pathTorsoA.array().toString())
-    // tA.show()
-    // var tB = draw.path(pathTorsoA.array().toString())
-    // pathTorsoA.animate(2000, '>', 1000).plot(pathTorsoB.array())
-    // // create path
 
-    var leg_A = body.legs.legs_2A
-    var leg_B = body.legs.legs_2B
-    var leftA = leg_A.select('#left').first()
-    var leftB = leg_B.select('#left').first()
-    var rightA = leg_A.select('#right').first()
-    var rightB = leg_B.select('#right').first()
+    // var leg_A = body.legs.legs_2A
+    // var leg_B = body.legs.legs_2B
+    // var leftA = leg_A.select('#left').first()
+    // var leftB = leg_B.select('#left').first()
+    // var rightA = leg_A.select('#right').first()
+    // var rightB = leg_B.select('#right').first()
 
-    leg_A.show()
+    // leg_A.show()
     // leg_B.show()
 
-    leftA.animate(2000, '>', 0).plot(leftB.array())
-    rightA.animate(2000, '>', 0).plot(rightB.array())
+    // leftA.animate(2000, '>', 0).plot(leftB.array())
+    // rightA.animate(2000, '>', 0).plot(rightB.array())
 
 
 

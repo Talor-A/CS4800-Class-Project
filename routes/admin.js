@@ -6,7 +6,7 @@ var mysql = require('mysql');
 var bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({ extended: true })
 var con = mysql.createConnection({host: "199.19.224.212", user: "ryan", password: "password", database: "software"});
-con.connect();
+con.connect((err)=>console.log(err || "connected"));
 
 
 var basic = auth.basic({
