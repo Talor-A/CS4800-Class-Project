@@ -15,7 +15,7 @@ SVG.on(document, 'DOMContentLoaded', function () {
 
   // set up SVG.js library. 
   // #render is the document element where the graphics will be shown
-  var draw = SVG('render')
+  var draw = SVG('render').size(555,405)
 
   var svgToPaths = svg => {
 
@@ -29,7 +29,6 @@ SVG.on(document, 'DOMContentLoaded', function () {
 
       if(currChild.array) paths.push(currChild)
     }, true)
-    console.log(paths)
     return paths
   }
 
@@ -57,7 +56,7 @@ SVG.on(document, 'DOMContentLoaded', function () {
 
   var requests = [body1req,body2req]
 
-  var animateAll = (fromSvg, toSvg, time) => {
+  var getAllAnimations = (fromSvg, toSvg, time) => {
     const fromPaths = svgToPaths(fromSvg)
     const toPaths = svgToPaths(toSvg)
     const anims = []
@@ -67,8 +66,10 @@ SVG.on(document, 'DOMContentLoaded', function () {
       for(var i = 0; i < fromPaths.length; i++) {
         var from = fromPaths[i]
         var to = toPaths[i]
-        const anim = from.animate()
+        const anim = from.animate().loop()
         anim.plot(to.array())
+        from.pause()
+        anims.push(anim)
       }
     }
     return anims
@@ -80,37 +81,19 @@ SVG.on(document, 'DOMContentLoaded', function () {
 
     console.log("all svgs loaded.")
     body2node.hide()
-    // body1node.animate(2000, '>', 0).plot(body2node)
+
     console.dir(body1node)
-    animateAll(body1node,body2node)
-    // var tA = body.torso.torso_A
-    // var tB = body.torso.torso_B
-
-    // var pathTorsoA = tA.select('#Torso').first()
-    // var pathTorsoB = tB.select('#Torso').first()
-
-    // console.log(pathTorsoA.array().value)
+    const anims = getAllAnimations(body1node,body2node)
 
 
-    // var leg_A = body.legs.legs_2A
-    // var leg_B = body.legs.legs_2B
-    // var leftA = leg_A.select('#left').first()
-    // var leftB = leg_B.select('#left').first()
-    // var rightA = leg_A.select('#right').first()
-    // var rightB = leg_B.select('#right').first()
+    const waistSlider = document.getElementById("waist")
+    waistSlider.oninput = function() {
+      anims.map(anim => {
+        anim.at(Math.min(1,Math.max(0,waistSlider.value / 100)))
+      })
+    }
+    
 
-    // leg_A.show()
-    // leg_B.show()
-
-    // leftA.animate(2000, '>', 0).plot(leftB.array())
-    // rightA.animate(2000, '>', 0).plot(rightB.array())
-
-
-
-    // var path = draw.path('M150 0 L75 200 L225 200 Z')
-
-    // // animate path
-    // path.animate(2000, '>', 1000).plot('M100 0 H190 V90 H100 Z')
 
   })
 
