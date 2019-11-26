@@ -86,14 +86,18 @@ SVG.on(document, 'DOMContentLoaded', function () {
     const anims = getAllAnimations(body1node,body2node)
 
 
-    const waistSlider = document.getElementById("waist")
+    const waistSlider = document.getElementById("weight")
     waistSlider.oninput = function() {
       anims.map(anim => {
         anim.at(Math.min(1,Math.max(0,waistSlider.value / 100)))
       })
     }
-    
 
+    const heightSlider = document.getElementById("height")
+    heightSlider.oninput = function() {
+      body1node.transform({scaleY:heightSlider.value/100})
+    }
+    
 
   })
 
