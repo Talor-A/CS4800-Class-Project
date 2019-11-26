@@ -95,7 +95,8 @@ SVG.on(document, 'DOMContentLoaded', function () {
 
     const heightSlider = document.getElementById("height")
     heightSlider.oninput = function() {
-      body1node.transform({scaleY:heightSlider.value/100})
+	sv = heightSlider.value/100
+        body1node.children()[4].children()[0].transform({a: 1, b: 0, c: 0, d: sv, e: 0, f: 55*(1-sv)})
     }
     
 
