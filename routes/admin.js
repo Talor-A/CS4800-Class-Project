@@ -9,6 +9,7 @@ var con = mysql.createConnection({host: "199.19.224.212", user: "ryan", password
 con.connect((err)=>console.log(err || "connected"));
 
 
+
 var basic = auth.basic({
         realm: "Private Area."
     }, (username, password, callback) => { 
@@ -28,11 +29,10 @@ router.get('/', function(req, res) {
  
 router.post('/upload', urlencodedParser, function (req, res){
   var x = req.body;
-  var command = "INSERT INTO `dresses`(`base64`, `vector`, `description`) VALUES (\"" + x.base + "\", \"" + x.vector + "\", \"" + x.desc + "\")"
+  var command = "INSERT INTO `dresses`(`vector`, `description`) VALUES ('" + x.vector + "', \"" + x.desc + "\")"
   con.query(command, function (err, result, fields) {
-      if (err) throw err;
+      if (err) console.log(err);
   });
-
 
   res.send("Dress added.");
  });

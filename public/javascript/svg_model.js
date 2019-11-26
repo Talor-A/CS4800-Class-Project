@@ -1,9 +1,5 @@
-var body = {
-  LEG_L: {},
-  LEG_R: {},
-  legs: {},
-  torso: {}
-}
+
+var showdress
 
 SVG.on(document, 'DOMContentLoaded', function () {
   initateCarousel()
@@ -12,6 +8,7 @@ SVG.on(document, 'DOMContentLoaded', function () {
     .then(res => res.json())
     .then(text => getJSON(text))
     .catch(e => console.error(e))
+
 
   // set up SVG.js library. 
   // #render is the document element where the graphics will be shown
@@ -49,12 +46,17 @@ SVG.on(document, 'DOMContentLoaded', function () {
   var body1req = fetch('images/SVG/Body1.svg')
     .then(res => res.text())
     .then(textToSvg)
+
   var body2req = fetch('images/SVG/Body2.svg')
   .then(res => res.text())
   .then(textToSvg)
 
+  var dress1req = fetch('images/SVG/Dress1.svg')
+  .then(res => res.text())
+  .then(textToSvg)
 
-  var requests = [body1req,body2req]
+
+  var requests = [body1req,body2req,dress1req]
 
   var getAllAnimations = (fromSvg, toSvg, time) => {
     const fromPaths = svgToPaths(fromSvg)
@@ -76,30 +78,41 @@ SVG.on(document, 'DOMContentLoaded', function () {
   }
   
   Promise.all(requests)
-  .then(([body1node,body2node]) => {
+  .then(([body1node,body2node,dress1node]) => {
 
+    function updateDresses(){dress1node.transform({a: 1 + ws, b: 0, c: 0, d:hs, e: (-245*ws), f: 115*(1-hs)})}
 
-    console.log("all svgs loaded.")
     body2node.hide()
-
-    console.dir(body1node)
     const anims = getAllAnimations(body1node,body2node)
+
+    dress1node.front()
 
 
     const waistSlider = document.getElementById("weight")
+    var ws = waistSlider.value / 100
+
     waistSlider.oninput = function() {
+	ws = waistSlider.value / 100
+	updateDresses()
+
       anims.map(anim => {
-        anim.at(Math.min(1,Math.max(0,waistSlider.value / 100)))
+        anim.at(Math.min(1,Math.max(0, ws)))
       })
     }
 
     const heightSlider = document.getElementById("height")
+    var hs = heightSlider.value/100
+
     heightSlider.oninput = function() {
-	sv = heightSlider.value/100
-        body1node.children()[4].children()[0].transform({a: 1, b: 0, c: 0, d: sv, e: 0, f: 55*(1-sv)})
+	hs = heightSlider.value/100
+	updateDresses()
+        body1node.children()[4].children()[0].transform({a: 1, b: 0, c: 0, d: hs, e: 0, f: 55*(1-hs)}) //55 is a magic number, it lines the head up with the neck as it resizes, straight resizing is along the center, so we have to adjust the hight as well
     }
-    
 
+    showdress = s => {
+	dress1node.hide()
+	dress1node = textToSvg(s)
+	dress1node.show()
+    }
   })
-
 })
