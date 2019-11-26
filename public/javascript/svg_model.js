@@ -112,6 +112,7 @@ SVG.on(document, 'DOMContentLoaded', function () {
     showdress = s => {
 	dress1node.hide()
 	dress1node = textToSvg(s)
+	updateDresses()
 	dress1node.show()
     }
   })
