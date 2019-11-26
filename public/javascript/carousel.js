@@ -10,9 +10,9 @@ function getJSON(data) {
     else
       active = ""
 
-    str_full += "<div class=\"col-xs-4\"><a href=\"#1\"><svg onclick=\"showdress(this.innerHTML)\" class=\"img-responsive\">" + data[i].vector + "</svg></a></div>"
+    str_full += "<div class=\"col-xs-4\"><a href=\"#1\"> "+ data[i].description + "<svg onclick=\"showdress(this.innerHTML)\" class=\"img-responsive\">" + data[i].vector + "</svg></a></div>"
 
-    if (i % carousel_images_per_slide == (carousel_images_per_slide - 1)) {
+    if ((i % carousel_images_per_slide == (carousel_images_per_slide - 1)) || (i == data.length-1)) {
       document.getElementById('carousel-inner').innerHTML += "<div class=\"item" + active + "\">" + str_full + "</div>";
       str_full = "";
     }
