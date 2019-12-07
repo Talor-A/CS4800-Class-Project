@@ -12,7 +12,7 @@ SVG.on(document, 'DOMContentLoaded', function () {
 
   // set up SVG.js library. 
   // #render is the document element where the graphics will be shown
-  var draw = SVG('render').size(555,405)
+  var draw = SVG('render').size(555, 405)
 
   var svgToPaths = svg => {
 
@@ -24,7 +24,7 @@ SVG.on(document, 'DOMContentLoaded', function () {
 
       // console.log(currChild)
 
-      if(currChild.array) paths.push(currChild)
+      if (currChild.array) paths.push(currChild)
     }, true)
     return paths
   }
@@ -48,24 +48,24 @@ SVG.on(document, 'DOMContentLoaded', function () {
     .then(textToSvg)
 
   var body2req = fetch('images/SVG/Body2.svg')
-  .then(res => res.text())
-  .then(textToSvg)
+    .then(res => res.text())
+    .then(textToSvg)
 
   var dress1req = fetch('images/SVG/Dress1.svg')
-  .then(res => res.text())
-  .then(textToSvg)
+    .then(res => res.text())
+    .then(textToSvg)
 
 
-  var requests = [body1req,body2req,dress1req]
+  var requests = [body1req, body2req, dress1req]
 
   var getAllAnimations = (fromSvg, toSvg, time) => {
     const fromPaths = svgToPaths(fromSvg)
     const toPaths = svgToPaths(toSvg)
     const anims = []
-    if(fromPaths.length !== toPaths.length) {
+    if (fromPaths.length !== toPaths.length) {
       console.error('paths not similar shape.')
     } else {
-      for(var i = 0; i < fromPaths.length; i++) {
+      for (var i = 0; i < fromPaths.length; i++) {
         var from = fromPaths[i]
         var to = toPaths[i]
         const anim = from.animate().loop()
@@ -76,33 +76,34 @@ SVG.on(document, 'DOMContentLoaded', function () {
     }
     return anims
   }
-  
+
   Promise.all(requests)
-  .then(([body1node,body2node,dress1node]) => {
+    .then(([body1node, body2node, dress1node]) => {
 
-    function updateDresses(){dress1node.transform({a: 1 + ws, b: 0, c: 0, d:hs, e: (-245*ws), f: 115*(1-hs)})}
+      function updateDresses() { dress1node.transform({ a: 1 + ws, b: 0, c: 0, d: hs, e: (-245 * ws), f: 115 * (1 - hs) }) }
 
-    body2node.hide()
-    const anims = getAllAnimations(body1node,body2node)
+      body2node.hide()
+      const anims = getAllAnimations(body1node, body2node)
 
-    dress1node.front()
+      dress1node.front()
 
 
-    const waistSlider = document.getElementById("weight")
-    var ws = waistSlider.value / 100
+      const waistSlider = document.getElementById("weight")
+      var ws = waistSlider.value / 100
 
     waistSlider.oninput = function() {
 	document.getElementById("wVal").innerHTML = (Number(waistSlider.value) + 100);
 	ws = waistSlider.value / 100
 	updateDresses()
 
-      anims.map(anim => {
-        anim.at(Math.min(1,Math.max(0, ws)))
-      })
-    }
+        anims.map(anim => {
+          anim.at(Math.min(1, Math.max(0, ws)))
+        })
+      }
 
-    const heightSlider = document.getElementById("height")
-    var hs = heightSlider.value/100
+      const heightSlider = document.getElementById("height")
+      var hs = heightSlider.value / 100
+
 
     heightSlider.oninput = function() {
 	document.getElementById("hVal").innerHTML = heightSlider.value;
@@ -110,12 +111,11 @@ SVG.on(document, 'DOMContentLoaded', function () {
 	updateDresses()
         body1node.children()[4].children()[0].transform({a: 1, b: 0, c: 0, d: hs, e: 0, f: 55*(1-hs)}) //55 is a magic number, it lines the head up with the neck as it resizes, straight resizing is along the center, so we have to adjust the hight as well
     }
-
-    showdress = s => {
-	dress1node.hide()
-	dress1node = textToSvg(s)
-	updateDresses()
-	dress1node.show()
-    }
-  })
+      showdress = s => {
+        dress1node.hide()
+        dress1node = textToSvg(s)
+        updateDresses()
+        dress1node.show()
+      }
+    })
 })
