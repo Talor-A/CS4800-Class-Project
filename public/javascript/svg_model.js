@@ -92,6 +92,7 @@ SVG.on(document, 'DOMContentLoaded', function () {
     var ws = waistSlider.value / 100
 
     waistSlider.oninput = function() {
+	document.getElementById("wVal").innerHTML = (Number(waistSlider.value) + 100);
 	ws = waistSlider.value / 100
 	updateDresses()
 
@@ -104,6 +105,7 @@ SVG.on(document, 'DOMContentLoaded', function () {
     var hs = heightSlider.value/100
 
     heightSlider.oninput = function() {
+	document.getElementById("hVal").innerHTML = heightSlider.value;
 	hs = heightSlider.value/100
 	updateDresses()
         body1node.children()[4].children()[0].transform({a: 1, b: 0, c: 0, d: hs, e: 0, f: 55*(1-hs)}) //55 is a magic number, it lines the head up with the neck as it resizes, straight resizing is along the center, so we have to adjust the hight as well
